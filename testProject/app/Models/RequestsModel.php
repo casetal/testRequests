@@ -12,7 +12,8 @@ class RequestsModel extends Model
     protected $fillable = [
         'name',
         'email',
-        'message'
+        'message',
+        'status'
     ];
 
     use HasFactory;
