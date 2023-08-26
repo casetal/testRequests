@@ -42,7 +42,7 @@ class RequestsValidation extends FormRequest
             case 'PUT':
                 return $rulesUpdateRequest;
             default:
-                return null;
+                return [];
         }
     }
 
@@ -57,9 +57,10 @@ class RequestsValidation extends FormRequest
 
     public function messages() {
         return [
-            'name.required' => 'Поле имя обязателен',
-            'email.required' => 'Поле email обязателен',
-            'message.required' => 'Поле сообщение обязателен'
+            'name.required' => 'Поле `name` обязателен',
+            'email.required' => 'Поле `email` обязателен',
+            'message.required' => 'Поле `message` обязателен',
+            'comment.required' => 'Поле `comment` обязателен'
         ];
     }
 }
