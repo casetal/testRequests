@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\RequestsCollection;
 use App\Http\Requests\RequestsValidation;
 use App\Models\RequestsModel;
+use App\Enums\RequestsEnum;
 
 class RequestsController extends Controller
 {
@@ -16,7 +17,7 @@ class RequestsController extends Controller
 
     // POST
     public function store(RequestsValidation $request) {
-        return response()->json(RequestsModel::create($request->all()));
+        return response()->json(RequestsModel::create(array_merge($request->all(), ['status' => RequestsEnum::Active])));
     }
 
     // PUT
