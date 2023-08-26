@@ -19,7 +19,8 @@ class Requests extends Migration
             $table->string('name', 50);
             $table->string('email', 50);
             $table->enum('status', ['Active', 'Resolved']);
-            $table->string('message', 2000);
+            $table->string('message', 2000)->nullable();
+            $table->string('comment', 2000)->nullable();
             $table->timestamps();
         });
     }
