@@ -50,7 +50,7 @@ class RequestsValidation extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'data'      => $validator->errors()
+            'errors'      => $validator->errors()
         ]));
 
     }
@@ -58,6 +58,7 @@ class RequestsValidation extends FormRequest
     public function messages() {
         return [
             'name.required' => 'Поле `name` обязателен',
+            'email.email' => 'Поле `email` указан неверно',
             'email.required' => 'Поле `email` обязателен',
             'message.required' => 'Поле `message` обязателен',
             'comment.required' => 'Поле `comment` обязателен'
