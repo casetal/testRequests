@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RequestsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('requests', [RequestsController::class, 'index']);
+Route::post('requests', [RequestsController::class, 'store']);
+Route::put('/requests/{id}', [RequestsController::class, 'update']);
