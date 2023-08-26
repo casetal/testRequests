@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\RequestsCollection;
 use App\Http\Requests\RequestsValidation;
 use App\Models\RequestsStoreModel;
+use App\Models\RequestsUpdateModel;
 use App\Enums\RequestsEnum;
 
 class RequestsController extends Controller
@@ -21,7 +22,11 @@ class RequestsController extends Controller
     }
 
     // PUT
-    public function update(RequestsValidation $request) {
-        return response()->json(RequestsStoreModel::update($request->all()));
+    public function update(RequestsValidation $request, string $id) {
+        $r = RequestsUpdateModel::Find($id);
+        $r->comment = $request->all()['comment'];
+        $r->status = RequestsEnum::Resolved;
+        $r->save();
+        return response()->json($r);
     }
 }
