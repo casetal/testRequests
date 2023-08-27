@@ -46,7 +46,7 @@ class RequestsController extends Controller
      * @param  mixed $id
      * @return void|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(RequestsValidation $request, string $id) {
+    public function update(RequestsValidation $request, string $id, string $access_token = '') {
         if(!empty($access_token)) {
             $filter = User::where('api_token', '=', $access_token)->first();
             
