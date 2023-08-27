@@ -16,5 +16,6 @@ use App\Http\Controllers\RequestsController;
 */
 
 Route::get('requests', [RequestsController::class, 'index']);
-Route::post('requests', [RequestsController::class, 'store']);
-Route::put('/requests/{id}', [RequestsController::class, 'update']);
+Route::post('requests', [RequestsController::class, 'store'])->middleware('throttle:10,1');
+Route::put('/requests/{id}', [RequestsController::class, 'update'])->middleware('throttle:10,1');
+Route::delete('/requests/{id}', [RequestsController::class, 'delete'])->middleware('throttle:1,1');

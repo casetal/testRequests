@@ -23,10 +23,12 @@ class RequestsController extends Controller
 
     // PUT
     public function update(RequestsValidation $request, string $id) {
-        $r = RequestsUpdateModel::Find($id);
-        $r->comment = $request->all()['comment'];
-        $r->status = RequestsEnum::Resolved;
-        $r->save();
-        return response()->json($r);
+        RequestsUpdateModel::where('id', $id)->update(array_merge($request->all(), ['status' => RequestsEnum::Resolved]));
+        return response()->json(RequestsUpdateModel::Find($id));
+    }
+
+    public function delete(string $id) {
+        RequestsUpdateModel::where('id', $id)->delete();
+        return response()->json(RequestsUpdateModel::Find($id));
     }
 }
