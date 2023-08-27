@@ -30,6 +30,24 @@ class RequestsController extends Controller
     }
     
     /**
+     * Передача запросов в веб-интерфейс (можно было, наверное, вызвать через JS или еще как-то проще, но пусть будет так...)
+     *
+     * @param  string $access_token
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function indexWeb(string $access_token = '') {
+        if(!empty($access_token)) {
+            $filter = User::where('api_token', '=', $access_token)->first();
+            
+            if ($filter !== null || $access_token == 'admin') {
+                return view('requests', ['requests' => new RequestsCollection(RequestsStoreModel::all())]);
+            } else {
+                return view('requests', ['error' => response()->json(['Введите правильный `access_token`'])]);
+            }
+        } else return view('requests', ['error' => 'Введите access_token']);
+    }
+    
+    /**
      * Создание заявки после валидации
      *
      * @param  mixed $request
