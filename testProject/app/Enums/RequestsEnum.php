@@ -2,12 +2,9 @@
 
 namespace App\Enums;
 
-// это для PHP 8.1
-
-// enum RequestsEnum:string {
-//     case Active = 'Active';
-//     case Resolved = 'Resolved';
-// }
+/**
+ * Перечисляемый тип для `status`
+ */
 
 abstract class RequestsEnum
 {
